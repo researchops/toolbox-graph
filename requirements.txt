@@ -1,0 +1,4 @@
+airtable==0.4.8
+graphdatascience==1.11
+neo4j==5.24.0
+pandas==2.2.2
