@@ -8,23 +8,25 @@
 //
 // tunkisp    2024-11-06    Adjust bloom query for fuller return.
 //
+// tunkisp    2024-11-11    Updating demo query here to reflect change in Aura.
+//
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////Show me a small tech startup with Canadian presence
 ////Demo query!
 
 //Cypher query
-MATCH p = (r1:Respondent)-[u1:USES]->(t:Tool)<-[u2:USES]-(r2:Respondent)-[s:SIMILAR_TO]-(r1)
+MATCH p=(r1:Respondent)-[u1:USES]->(t:Tool)<-[u2:USES]-(r2:Respondent)-[s:SIMILAR_TO]-(r1)
 WHERE r1 <> r2
-    AND "Tech" IN r1.industry
-    AND "Start-up or small corporation" IN r1.business
-    AND ("Canada" IN r1.participants 
-            OR "Canada" IN r1.researchers)
-    AND r1.num_researchers = "2-5"
-    AND r1.discipline = "User or design research"
-    AND (u1.use_case = "Research planning" 
-            OR u1.use_case = "Research roadmapping")
-    AND u1.use_case = u2.use_case
+AND 'Tech' IN r1.industry
+AND 'Start-up or small corporation' IN r1.business
+AND ('Canada' IN r1.participants 
+        OR 'Canada' IN r1.researchers)
+AND r1.num_researchers = "2-5"
+AND r1.discipline = "User or design research"
+AND (u1.use_case = "Research planning" 
+        OR u1.use_case = "Research roadmapping")
+AND u1.use_case = u2.use_case
 RETURN p
 
 ////////Show me all use cases for tool: $tool
